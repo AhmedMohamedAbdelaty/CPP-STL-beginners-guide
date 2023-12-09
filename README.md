@@ -75,17 +75,17 @@ Unordered associative containers implement unordered data structures that can be
 
 ---
 
-## Today we will learn about Linear Container STL
+## This tutorial covers the following topics:
 
 The Linear Container STL includes various data structures that store elements in a linear manner. Some commonly used linear containers are:
 
 -   **Vector**: A dynamic array that can resize itself.
--   **Pair**: A container that holds two values together.
+
 -   **Queue**: A container that follows the First-In-First-Out (FIFO) principle.
 -   **Deque**: A double-ended queue that allows insertion and deletion at both ends.
 -   **Stack**: A container that follows the Last-In-First-Out (LIFO) principle.
-
-### **Struct**: A user-defined data type that can hold multiple values. Not an STL container.
+-   **Pair**: A simple container that holds two values togethe, can be used with other STL components.
+-   **Struct**: A user-defined data type that can hold multiple values. Not an STL container.
 
 ---
 
