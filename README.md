@@ -364,8 +364,8 @@ Let's break down the differences between `insert`, `push_back`, and `emplace_bac
 
 **Inserting books (Example):**
 
-    -   **Push:** This is like adding a book to the **end** of a specific section. It's quick and easy, like adding a new book to the "Science" section at the end of the other science books.
-    -   **Emplace:** This is like building a book directly on the shelf. It's more efficient for large or complex books, like building a custom scrapbook directly on the shelf instead of bringing it from another location.
+-   **Push:** This is like adding a book to the **end** of a specific section. It's quick and easy, like adding a new book to the "Science" section at the end of the other science books.
+-   **Emplace:** This is like building a book directly on the shelf. It's more efficient for large or complex books, like building a custom scrapbook directly on the shelf instead of bringing it from another location.
 
 In summary, `push_back` is for adding to the end, `emplace_back` is for constructing and adding to the end.
 
