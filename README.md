@@ -362,7 +362,7 @@ Let's break down the differences between `insert`, `push_back`, and `emplace_bac
 
 -   **Explanation:** `insert` is like adding elements at a specific point in the vector. It's like squeezing a new person into a group but not necessarily at the end – you decide where they fit.
 
--   **Inserting books:**
+**Inserting books (Example):**
 
     -   **Push:** This is like adding a book to the **end** of a specific section. It's quick and easy, like adding a new book to the "Science" section at the end of the other science books.
     -   **Emplace:** This is like building a book directly on the shelf. It's more efficient for large or complex books, like building a custom scrapbook directly on the shelf instead of bringing it from another location.
