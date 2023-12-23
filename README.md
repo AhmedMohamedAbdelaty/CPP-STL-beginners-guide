@@ -1,6 +1,8 @@
 # CPP-STL-beginners-guide
 
-A beginner's guide to the C++ Standard Template Library (STL). This repository contains Markdown tutorials explaining the key components of the STL including vectors, pairs, queues, stacks, and more. Each concept is explained through simple code examples aimed at C++ beginners.
+This is my first attempt at writing a tutorial on the C++ STL. I created this with love ❤️, however as a beginner, there may be some inaccuracies. I welcome any feedback to improve it!
+
+The C++ Standard Template Library (STL) is a powerful set of containers, algorithms, and iterators. This repository aims to provide a gentle introduction to the key components of the STL for C++ beginners, with hands-on examples and explanations. We'll cover vectors, pairs, queues, stacks, and more. While not comprehensive, it serves as a starting point to leverage templates and generic programming in your C++ projects.
 
 The tutorials cover:
 
@@ -162,7 +164,7 @@ string last_element = v.back(); // last_element = "banana"
 
 ### Auto keyword
 
-### The `auto` keyword in C++ automatically detects and assigns a data type to the variable with which it is used. This can be helpful for making your code more concise and readable.
+#### The `auto` keyword in C++ automatically detects and assigns a data type to the variable with which it is used. This can be helpful for making your code more concise and readable.
 
 Here are some examples of how to use the `auto` keyword:
 
