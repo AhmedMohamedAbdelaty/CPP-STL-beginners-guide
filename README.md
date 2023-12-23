@@ -2,6 +2,10 @@
 
 This is my first attempt at writing a tutorial on the C++ STL. I created this with love ❤️, however as a beginner, there may be some inaccuracies. I welcome any feedback to improve it!
 
+You can also download the PDF version here: [STL Tutorial PDF](https://drive.google.com/file/d/15Z97li6MgD8I_1dlT4S1e0AaSjox85op/view?usp=sharing)
+
+---
+
 The C++ Standard Template Library (STL) is a powerful set of containers, algorithms, and iterators. This repository aims to provide a gentle introduction to the key components of the STL for C++ beginners, with hands-on examples and explanations. We'll cover vectors, pairs, queues, stacks, and more. While not comprehensive, it serves as a starting point to leverage templates and generic programming in your C++ projects.
 
 The tutorials cover:
@@ -13,8 +17,6 @@ The tutorials cover:
 -   Deques
 -   Iterators
 -   Structs
-
-With easy-to-follow examples and explanations, this repo serves as a hands-on guide to start learning the powerful STL in C++. Ideal for students and developers looking to leverage templates and generic programming in their projects.
 
 # C++ STL (Standard Template Library)
 
