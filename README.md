@@ -356,8 +356,8 @@ Let's break down the differences between `insert`, `push_back`, and `emplace_bac
 
 -   Usage:
 
-    ```
-    cppCopy codevector<int> numbers = {1, 2, 3};
+    ```c++
+    vector<int> numbers = {1, 2, 3};
     auto it = numbers.begin() + 1;
     numbers.insert(it, 4);
     ```
