@@ -17,6 +17,9 @@ The tutorials cover:
 -   Deques
 -   Iterators
 -   Structs
+-   Set
+-   Map
+-   Priority_queue
 
 # C++ STL (Standard Template Library)
 
@@ -1087,3 +1090,127 @@ for(auto s : database) {
 Good for simple data holders without encapsulation needs.
 
 Overall, structs allow customizing and reusing complex data types conveniently.
+
+
+# Set
+  Ordered unique elements (Red-Black Tree)
+
+  ## Key Characteristics
+  - Automatic Sorting:
+  - Unique Elements
+  ``` cpp
+    set<int> s {3,1,2} // Stored as {1,2,3}
+    s.insert(3); // No effect becouse '3' exists
+  ```
+  ## Declaration & Initialization
+  ```cpp
+  #include <set>
+  using namespace std;
+
+  set<int> s1;                     // Empty set
+  set<char> vowels{'a','e','i'};   // Initializer list
+  set<string> names = {"Alice", "Bob"};
+```
+## Iteration
+
+- Forward Iteration
+``` cpp
+  for(auto it = vowels.begin(); it != vowels.end(); ++it) {
+      cout << *it << " ";
+  }
+
+  // Range-based loop
+  for(const auto& ch : vowels) {
+      cout << ch << " ";
+  }
+```
+- Reverse Iteration
+```cpp
+  for(auto rit = vowels.rbegin(); rit != vowels.rend(); ++rit) {
+      cout << *rit << " ";  // Reverse order
+  }
+```
+## Set Functions
+### - Insertion Functions
+
+  ```cpp 
+  insert() // log(n)
+  ```
+  
+  Adds elements while maintaining order
+
+---
+
+  ```cpp
+  emplace() // log(n)
+  ```
+  More efficient for complex objects
+
+```cpp
+  set<pair<int, string>> people;
+  people.emplace(25, "Alice");  // Constructs element in-place
+```
+---
+### - Deletion Functions
+```cpp
+erase()
+```
+Remove elements in different ways:
+```cpp
+  vowels.erase('a');            // By value (returns 1 if removed)
+  auto it = vowels.find('e');
+  vowels.erase(it);             // By iterator
+  vowels.erase(vowels.begin(), vowels.find('i')); // Range
+```
+---
+
+```cpp
+clear()
+```
+Empty the set
+```cpp
+vowels.clear();  // Size becomes 0
+```
+### - Search Functions
+```cpp
+find() // log(n)
+```
+Returns iterator to element
+```cpp
+  auto it = vowels.find('e');
+  if(it != vowels.end()) {
+      cout << "Found: " << *it;
+  }
+```
+<hr>
+
+```cpp
+lower_bound();
+upper_bound();
+```
+Range queries
+
+```cpp
+set<int> nums{10,20,30,40,50};
+auto lb = nums.lower_bound(25); // First element >= 25 (30)
+auto ub = nums.upper_bound(45); // First element > 45 (50)
+```
+---
+### Capacity & Status
+```cpp
+empty(); // true or false
+```
+Check if set is empty
+```cpp
+size()
+```
+Get size of the set
+
+### Performance Table
+| Operation |	Time Complexity |
+|-----------|-----------------|
+|insert()|	O(log n)|
+|erase() |	O(log n)|	
+|find() |	O(log n)|
+|lower_bound()|	O(log n)|
+|iteration|	O(n)|
