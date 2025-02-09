@@ -1341,3 +1341,48 @@ Get size of the map
 |delete() |	O(log n)|	
 |Search() |	O(log n)|
 
+# Priority Queue 
+## Basic Characteristics
+ - **Container Adaptor**: Built on top of vectors/deques (default: vector)
+ - **Heap Structure**: Max-heap by default (largest element on top)
+ - **Key Operations**:
+   - `push()` : O(log n)
+   - `pop()` : O(log n)
+   - `top()` : O(1)
+ - **No Iteration**: Only access top element
+
+ ## Declaration & Initialization
+  Default (Max-Heap)
+  ```cpp
+    priority_queue<int> max_pq; // empty heap
+    vector<int> nums {3,1,4,1,5};// Initialize with values
+    priority_queue<int> pq(nums.begin(), nums.end());
+  ``` 
+
+  **Min-Heap**
+  ```cpp
+  priority_queue<int, vector<int>, greater<int>> min_pq;
+  ```
+
+## Key Operations
+ - `push()`
+ - `top()`
+ - `pop()`
+ - `empty()`
+ - `size()`
+
+ ```cpp
+  max_pq.push(5);
+  max_pq.push(2);
+  max_pq.push(8);  // Top becomes 8
+
+  cout << "Highest priority: " << max_pq.top();  // 8
+
+  max_pq.pop();  // Remove 8, new top is 5
+
+  if(!max_pq.empty()) {
+    cout << "Elements count: " << max_pq.size();
+  }
+```
+
+
