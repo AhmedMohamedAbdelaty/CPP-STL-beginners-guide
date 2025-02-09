@@ -1214,3 +1214,130 @@ Get size of the set
 |find() |	O(log n)|
 |lower_bound()|	O(log n)|
 |iteration|	O(n)|
+
+
+# Map
+Key-value pairs with sorted keys:
+```cpp
+map<string, int> population {
+    {"Tokyo", 37400000},
+    {"Delhi", 29400000}
+};
+cout << population["Tokyo"]; // 37400000
+```
+## Key Characteristics
+- **Automatic Sorting** : Keys are automatically sorted
+- **Unique keys**: Each key maps to exactly one value
+- **Complexity**: O(log n) for insert/delete/search
+
+## Declaration & Initialization
+```cpp
+  // Empty map
+  map<string, int> age_map;
+
+  // Initialization list
+  map<string, double> prices {
+      {"Apple", 2.99},
+      {"Milk", 3.49},
+      {"Bread", 1.99}
+  };
+
+  // Complex key type
+  map<pair<int, int>, string> coordinate_labels;
+```
+
+## Iteration Techniques
+ **Range-Based Loop**
+ ```cpp
+ for(const auto& [item, price] : prices) {
+    cout << item << ": $" << price << endl;
+}
+```
+---
+Revarse Iteration
+```cpp
+for(auto rit = prices.rbegin(); rit != prices.rend(); ++rit) {
+    cout << rit->first << " costs " << rit->second << endl;
+}
+```
+## Map Methods
+### Insertion Methods
+```insert()``` (Returns pair<iterator, bool>)
+```cpp
+auto result = prices.insert({"Eggs", 2.49});
+if(result.second) {
+    cout << "Insertion successful";
+}
+```
+```emplace()``` (In-place construction)
+```cpp
+prices.emplace("Cheese", 4.99);
+```
+```operator[]``` (Auto-insert if missing)
+```cpp
+prices["Butter"] = 3.79;  // Creates entry if not exists
+```
+
+### Accessing Elements
+Safe Access with `at()`
+```cpp
+  try {
+      cout << prices.at("Milk");  // Throws if key missing
+  } 
+  catch(const out_of_range& e) {
+      cerr << "Key not found!";
+  }
+```
+
+Unsafe Access with `operator[]`
+```cpp
+double milk_price = prices["Milk"];  // Returns 0.0 if missing!
+// it creates new pair using this missing key with defult value
+```
+Check Existence
+```cpp
+if(prices.find("Pizza") != prices.end()) {
+    cout << "Pizza price available";
+}
+```
+
+### Deletion Methods
+ - **Erase by Key**
+```cpp
+prices.erase("Bread");  // Returns 1 if erased
+
+// Erase multiple keys
+prices.erase("Apple");
+prices.erase("Milk"); 
+```
+
+- **Erase by iterator**
+```cpp
+auto it = prices.find("ExpiredItem");
+if(it != prices.end()) {
+    prices.erase(it);
+}
+```
+
+- `clear()`
+```cpp
+  prices.clear();  // Size becomes 0
+```
+
+### Capacity & Status
+```cpp
+empty(); // true or false
+```
+Check if map is empty
+```cpp
+size()
+```
+Get size of the map
+
+### Performance Table
+| Operation |	Time Complexity |
+|-----------|-----------------|
+|insert()|	O(log n)|
+|delete() |	O(log n)|	
+|Search() |	O(log n)|
+
