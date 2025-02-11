@@ -17,6 +17,9 @@ The tutorials cover:
 -   Deques
 -   Iterators
 -   Structs
+-   Set
+-   Map
+-   Priority_queue
 
 # C++ STL (Standard Template Library)
 
@@ -1087,3 +1090,299 @@ for(auto s : database) {
 Good for simple data holders without encapsulation needs.
 
 Overall, structs allow customizing and reusing complex data types conveniently.
+
+
+# Set
+  Ordered unique elements (Red-Black Tree)
+
+  ## Key Characteristics
+  - Automatic Sorting:
+  - Unique Elements
+  ``` cpp
+    set<int> s {3,1,2} // Stored as {1,2,3}
+    s.insert(3); // No effect becouse '3' exists
+  ```
+  ## Declaration & Initialization
+  ```cpp
+  #include <set>
+  using namespace std;
+
+  set<int> s1;                     // Empty set
+  set<char> vowels{'a','e','i'};   // Initializer list
+  set<string> names = {"Alice", "Bob"};
+```
+## Iteration
+
+- Forward Iteration
+``` cpp
+  for(auto it = vowels.begin(); it != vowels.end(); ++it) {
+      cout << *it << " ";
+  }
+
+  // Range-based loop
+  for(const auto& ch : vowels) {
+      cout << ch << " ";
+  }
+```
+- Reverse Iteration
+```cpp
+  for(auto rit = vowels.rbegin(); rit != vowels.rend(); ++rit) {
+      cout << *rit << " ";  // Reverse order
+  }
+```
+## Set Functions
+### - Insertion Functions
+
+  ```cpp 
+  insert() // log(n)
+  ```
+  
+  Adds elements while maintaining order
+
+---
+
+  ```cpp
+  emplace() // log(n)
+  ```
+  More efficient for complex objects
+
+```cpp
+  set<pair<int, string>> people;
+  people.emplace(25, "Alice");  // Constructs element in-place
+```
+---
+### - Deletion Functions
+```cpp
+erase()
+```
+Remove elements in different ways:
+```cpp
+  vowels.erase('a');            // By value (returns 1 if removed)
+  auto it = vowels.find('e');
+  vowels.erase(it);             // By iterator
+  vowels.erase(vowels.begin(), vowels.find('i')); // Range
+```
+---
+
+```cpp
+clear()
+```
+Empty the set
+```cpp
+vowels.clear();  // Size becomes 0
+```
+### - Search Functions
+```cpp
+find() // log(n)
+```
+Returns iterator to element
+```cpp
+  auto it = vowels.find('e');
+  if(it != vowels.end()) {
+      cout << "Found: " << *it;
+  }
+```
+<hr>
+
+```cpp
+lower_bound();
+upper_bound();
+```
+Range queries
+
+```cpp
+set<int> nums{10,20,30,40,50};
+auto lb = nums.lower_bound(25); // First element >= 25 (30)
+auto ub = nums.upper_bound(45); // First element > 45 (50)
+```
+---
+### Capacity & Status
+```cpp
+empty(); // true or false
+```
+Check if set is empty
+```cpp
+size()
+```
+Get size of the set
+
+### Performance Table
+| Operation |	Time Complexity |
+|-----------|-----------------|
+|insert()|	O(log n)|
+|erase() |	O(log n)|	
+|find() |	O(log n)|
+|lower_bound()|	O(log n)|
+|iteration|	O(n)|
+
+
+# Map
+Key-value pairs with sorted keys:
+```cpp
+map<string, int> population {
+    {"Tokyo", 37400000},
+    {"Delhi", 29400000}
+};
+cout << population["Tokyo"]; // 37400000
+```
+## Key Characteristics
+- **Automatic Sorting** : Keys are automatically sorted
+- **Unique keys**: Each key maps to exactly one value
+- **Complexity**: O(log n) for insert/delete/search
+
+## Declaration & Initialization
+```cpp
+  // Empty map
+  map<string, int> age_map;
+
+  // Initialization list
+  map<string, double> prices {
+      {"Apple", 2.99},
+      {"Milk", 3.49},
+      {"Bread", 1.99}
+  };
+
+  // Complex key type
+  map<pair<int, int>, string> coordinate_labels;
+```
+
+## Iteration Techniques
+ **Range-Based Loop**
+ ```cpp
+ for(const auto& [item, price] : prices) {
+    cout << item << ": $" << price << endl;
+}
+```
+---
+Revarse Iteration
+```cpp
+for(auto rit = prices.rbegin(); rit != prices.rend(); ++rit) {
+    cout << rit->first << " costs " << rit->second << endl;
+}
+```
+## Map Methods
+### Insertion Methods
+```insert()``` (Returns pair<iterator, bool>)
+```cpp
+auto result = prices.insert({"Eggs", 2.49});
+if(result.second) {
+    cout << "Insertion successful";
+}
+```
+```emplace()``` (In-place construction)
+```cpp
+prices.emplace("Cheese", 4.99);
+```
+```operator[]``` (Auto-insert if missing)
+```cpp
+prices["Butter"] = 3.79;  // Creates entry if not exists
+```
+
+### Accessing Elements
+Safe Access with `at()`
+```cpp
+  try {
+      cout << prices.at("Milk");  // Throws if key missing
+  } 
+  catch(const out_of_range& e) {
+      cerr << "Key not found!";
+  }
+```
+
+Unsafe Access with `operator[]`
+```cpp
+double milk_price = prices["Milk"];  // Returns 0.0 if missing!
+// it creates new pair using this missing key with defult value
+```
+Check Existence
+```cpp
+if(prices.find("Pizza") != prices.end()) {
+    cout << "Pizza price available";
+}
+```
+
+### Deletion Methods
+ - **Erase by Key**
+```cpp
+prices.erase("Bread");  // Returns 1 if erased
+
+// Erase multiple keys
+prices.erase("Apple");
+prices.erase("Milk"); 
+```
+
+- **Erase by iterator**
+```cpp
+auto it = prices.find("ExpiredItem");
+if(it != prices.end()) {
+    prices.erase(it);
+}
+```
+
+- `clear()`
+```cpp
+  prices.clear();  // Size becomes 0
+```
+
+### Capacity & Status
+```cpp
+empty(); // true or false
+```
+Check if map is empty
+```cpp
+size()
+```
+Get size of the map
+
+### Performance Table
+| Operation |	Time Complexity |
+|-----------|-----------------|
+|insert()|	O(log n)|
+|delete() |	O(log n)|	
+|Search() |	O(log n)|
+
+# Priority Queue 
+## Basic Characteristics
+ - **Container Adaptor**: Built on top of vectors/deques (default: vector)
+ - **Heap Structure**: Max-heap by default (largest element on top)
+ - **Key Operations**:
+   - `push()` : O(log n)
+   - `pop()` : O(log n)
+   - `top()` : O(1)
+ - **No Iteration**: Only access top element
+
+ ## Declaration & Initialization
+  Default (Max-Heap)
+  ```cpp
+    priority_queue<int> max_pq; // empty heap
+    vector<int> nums {3,1,4,1,5};// Initialize with values
+    priority_queue<int> pq(nums.begin(), nums.end());
+  ``` 
+
+  **Min-Heap**
+  ```cpp
+  priority_queue<int, vector<int>, greater<int>> min_pq;
+  ```
+
+## Key Operations
+ - `push()`
+ - `top()`
+ - `pop()`
+ - `empty()`
+ - `size()`
+
+ ```cpp
+  max_pq.push(5);
+  max_pq.push(2);
+  max_pq.push(8);  // Top becomes 8
+
+  cout << "Highest priority: " << max_pq.top();  // 8
+
+  max_pq.pop();  // Remove 8, new top is 5
+
+  if(!max_pq.empty()) {
+    cout << "Elements count: " << max_pq.size();
+  }
+```
+
+
